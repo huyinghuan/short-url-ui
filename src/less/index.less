@@ -1,0 +1,74 @@
+.bg{
+  background-image: url("/assets/images/bg.png") !important;
+  background-repeat: repeat-x!important;
+}
+//页面布局分左右两侧
+#container{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-width: 320px;
+  background: #fff;
+  font-size: 14px;
+  display:flex;
+  flex-direction:row;
+}
+//右部主菜单
+.toc{ 
+  position: relative;
+  flex: 0 0 auto;
+  width: 250px!important;
+  .ui.menu{
+    width: 250px!important;
+    border-radius: 0;
+    border-width: 0 1px 0 0;
+    box-shadow: none;
+    margin: 0;
+    height: 100%;
+    overflow-y: auto
+  }
+}
+//左部主体内容 上下布局
+.article{ 
+  flex: 1;
+  -webkit-flex:1;
+  -webkit-box-flex:1;
+  //顶部 导航面包屑
+  .ui.menu{
+    border-radius: 0;
+  }
+  display:flex;
+  flex-direction:column;
+  //下部主体内容
+  .pusher{
+    flex: 1;
+    padding-top: 10px;
+    padding-left: 30px;
+    overflow-y: hidden;
+    //一种布局：只有一个主体部分 
+    .main-one{
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+    }
+    //二种布局：上下布局，上部为表单搜索，下部显示数据表格
+    .main{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction:column;
+      .data-form{
+        width: 100%
+      }
+      .data-table{
+        flex:1;
+        overflow-y: auto;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.content span{
+  margin-left: 15px;
+}
