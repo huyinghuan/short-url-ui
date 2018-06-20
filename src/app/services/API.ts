@@ -36,7 +36,7 @@ export class API {
         if(method!="GET"){
           alertjs.success("操作成功！")
         }
-        if(response.headers.get("content-type").indexOf('json')!=-1){
+        if(response.headers.get("content-type") && response.headers.get("content-type").indexOf('json')!=-1){
           resolve(response.json())
         }else{
           resolve(response.text())

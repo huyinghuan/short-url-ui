@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { API } from '../services/API';
 
+import { Router } from '@angular/router';
+
 const template:string = `
 <div class="main">
   <div class="ui form">
@@ -52,7 +54,7 @@ const template:string = `
 export class ShortPage implements OnInit{
   shortURL = {url: ""}
   shortList:Array<any> = []
-  constructor(private api:API){}
+  constructor(private api:API, private router:Router){}
   loadList(){
     this.api.get("short").then((data:Array<any>)=>{
       this.shortList = data

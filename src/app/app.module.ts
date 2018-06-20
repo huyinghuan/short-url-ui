@@ -35,7 +35,8 @@ var router = RouterModule.forRoot([
         path: "short", component: ShortPage
     },{
       path: "short/:short", component: ShortEditPage
-    }]
+    }
+    ]
   },
   // {path: '404', component: Page404},
   // {path: '**', redirectTo: '/404'}
