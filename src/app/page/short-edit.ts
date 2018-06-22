@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { API } from '../services/API';
 import { ActivatedRoute } from '@angular/router';
+import * as alertjs from 'alertify.js';
 const template:string = `
 <div class="main">
   <div class="ui form">
@@ -15,8 +16,8 @@ const template:string = `
       <div class="two wide field">
         <select class="ui search dropdown"  [(ngModel)]="shortURL.params">
           <option value="">禁用</option>
-          <option value="remote_addr">IP</option>
-          <option value="http_user_agent">UserAgent</option>
+          <option value="ip">IP</option>
+          <option value="ua">UserAgent</option>
         </select>
       </div>
       <div class="field">
@@ -121,6 +122,11 @@ export class ShortEditPage implements OnInit{
   delVersion(tid){
     this.api.remove("short.tag", Object.assign({tag:tid}, this.params)).then(()=>{
       this.loadVersionList()
+    })
+  }
+  deploy(){
+    this.api.get("short.deploy", this.params).then(()=>{
+      alertjs.success("You've clicked OK");
     })
   }
 }
