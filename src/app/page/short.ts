@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { API } from '../services/API';
 
 import { Router } from '@angular/router';
-
+import * as alertjs from 'alertify.js';
 const template:string = `
 <div class="main">
   <div class="ui form">
@@ -37,7 +37,7 @@ const template:string = `
       <td class="collapsing">
       <div class="ui buttons">
         <a class="ui green icon button" title="编辑" [routerLink]="[short.id]"><i class="edit icon"></i></a>
-        <button class="ui red icon button"  title="禁用"><i class="trash icon"></i></button>
+        <button class="ui blue icon button"  title="同步" (click)="sync(short.id)"><i class="sync icon"></i></button>
       </div>
       </td>
     </tr>
@@ -66,6 +66,12 @@ export class ShortPage implements OnInit{
   generate(){
     this.api.post("short",{},this.shortURL).then(()=>{
       this.loadList()
+    })
+  }
+
+  sync(id){
+    this.api.get("short.sync", {short:id}).then(()=>{
+      alertjs.success("Sync succcess");
     })
   }
 }
