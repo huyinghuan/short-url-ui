@@ -6,8 +6,8 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './page/app';
 import {LeftNavComponent} from './components/left-nav';
+import {Pagination} from './components/pagination';
 import { IndexPage } from './page/index';
-import { LoginPage } from './page/login';
 //====== 二层页面
 
 import { API } from './services/API';
@@ -28,7 +28,6 @@ alertjs.logPosition("bottom right").maxLogItems(5).delay(10000).okBtn("确认").
 
 var router = RouterModule.forRoot([
   {path: "", redirectTo:"/index/short", pathMatch:"full"},
-  {path: 'login',component: LoginPage},
   { path: "index",
     component: IndexPage,
     children:[{
@@ -47,7 +46,7 @@ var router = RouterModule.forRoot([
     AppComponent,
     LeftNavComponent,
     TopNavComponent,
-    LoginPage,
+    Pagination,
     Page404,
     IndexPage,
     ShortPage,

@@ -16,9 +16,17 @@ export class API {
       let urlParamValue = params[urlArr[i]]
       if(urlParamValue){
         resultRouteArr.push(urlParamValue)
+        delete params[urlArr[i]]
       }
     }
-    return resultRouteArr.join("/")
+    let query = Object.keys(params).map(function(key) {
+      return encodeURIComponent(key) + '=' +
+          encodeURIComponent(params[key]);
+    }).join('&')
+    if(query != ""){
+      query = "?"+query
+    }
+    return resultRouteArr.join("/") + query
   }
   fetch(url, defparams, data, method="GET"){
     url = this.tranformRoute(url, defparams)
@@ -45,7 +53,7 @@ export class API {
         let msg = errorResponse.text()
         switch(errorResponse.status){
           case 401: 
-            this.router.navigateByUrl("/login");
+            window.location.href = errorResponse.headers.get("Location")
             break;
           case 403:
             alertjs.error(msg);

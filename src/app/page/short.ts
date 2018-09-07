@@ -43,6 +43,7 @@ const template:string = `
     </tr>
   </tbody>
   </table>
+  <pagination (onGoto)="goto($event)" [pageCount]="page.pageTotal"  [pageCurrent]="page.index"></pagination>
 </div>
 `
 @Component({
@@ -55,17 +56,25 @@ export class ShortPage implements OnInit{
   shortURL = {url: ""}
   shortList:Array<any> = []
   constructor(private api:API, private router:Router){}
-  loadList(){
-    this.api.get("short").then((data:Array<any>)=>{
-      this.shortList = data
+  page = {
+    pageTotal: 1,
+    index: 1
+  }
+  goto(index){
+    this.loadList({pageIndex: index, pageSize: 15})
+  }
+  loadList(params){
+    this.api.get("short", params).then((responseData:any)=>{
+      this.shortList = responseData.data
+      this.page = responseData.page
     })
   }
   ngOnInit() {
-    this.loadList()
+    this.loadList({})
   }
   generate(){
     this.api.post("short",{},this.shortURL).then(()=>{
-      this.loadList()
+      this.loadList({})
     })
   }
 
