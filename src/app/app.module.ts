@@ -17,6 +17,7 @@ import  * as alertjs from 'alertify.js'
 import { TopNavComponent } from './components/top-nav';
 import { ShortPage } from './page/short';
 import { ShortEditPage } from './page/short-edit'
+import { ThirdPage}from './page/third'
 
 alertjs.logPosition("bottom right").maxLogItems(5).delay(10000).okBtn("确认").cancelBtn("取消").setLogTemplate(function(input){
   let q = [];
@@ -34,6 +35,8 @@ var router = RouterModule.forRoot([
         path: "short", component: ShortPage
     },{
       path: "short/:short", component: ShortEditPage
+    },{
+      path: "third", component: ThirdPage,
     }
     ]
   },
@@ -50,7 +53,8 @@ var router = RouterModule.forRoot([
     Page404,
     IndexPage,
     ShortPage,
-    ShortEditPage
+    ShortEditPage,
+    ThirdPage,
   ],
   imports: [
     BrowserModule , HttpModule, FormsModule, router
