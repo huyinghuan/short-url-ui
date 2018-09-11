@@ -18,12 +18,17 @@ let template:string = `
 export class TopNavComponent implements OnInit{
   username = "未登录"
   constructor(private api:API){}
-  ngOnInit(){
+  getUserInfo(){
     this.api.get("user").then((data)=>{
       this.username = (data as any).username
     })
   }
+  ngOnInit(){
+    this.getUserInfo()
+  }
   logout(){
-    this.api.remove("user")
+    this.api.remove("user").then(()=>{
+      this.getUserInfo()
+    })
   }
 }

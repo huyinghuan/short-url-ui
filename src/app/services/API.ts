@@ -1,7 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptionsArgs, Response  } from '@angular/http';
+import { Http, RequestOptionsArgs, Response, Headers  } from '@angular/http';
 import {Router, ActivatedRoute} from "@angular/router";
 import  * as alertjs from 'alertify.js'
+
+function indexOf(arr, item){
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i] == item){
+      return i
+    }
+  }
+  return -1
+}
+
+function getQueryParams(params, skip){
+  let keys = Object.keys(params)
+  let query = []
+  for(let i = 0; i < keys.length; i++){
+    let key = keys[i]
+    if(indexOf(skip, key)==-1){
+      query.push(key+"="+params[key])
+    }
+  }
+  return query.join("&")
+}
 
 @Injectable()
 export class API {
@@ -9,6 +30,7 @@ export class API {
   constructor(private http:Http, private router:Router, private activeRoute:ActivatedRoute){}
   tranformRoute(urlstr:string, params?:any){
     params = params || {}
+    let skip = []
     let urlArr = urlstr.split(".")
     let resultRouteArr = ["/api"]
     for(let i = 0; i < urlArr.length; i++){
@@ -16,13 +38,10 @@ export class API {
       let urlParamValue = params[urlArr[i]]
       if(urlParamValue){
         resultRouteArr.push(urlParamValue)
-        delete params[urlArr[i]]
+        skip.push(urlArr[i])
       }
     }
-    let query = Object.keys(params).map(function(key) {
-      return encodeURIComponent(key) + '=' +
-          encodeURIComponent(params[key]);
-    }).join('&')
+    let query = getQueryParams(params, skip)
     if(query != ""){
       query = "?"+query
     }
@@ -31,7 +50,11 @@ export class API {
   fetch(url, defparams, data, method="GET"){
     url = this.tranformRoute(url, defparams)
     let options:RequestOptionsArgs=  {
-      method:method
+      method:method,
+      headers: new Headers({
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+      })
     }
     if(method!="GET"){
       options.body = JSON.stringify(data);

@@ -15,6 +15,9 @@ const template:string = `
       <div class="field">
         <button class="ui blue button" (click)="generate()">生成</button>
       </div>
+      <div class="field">
+        <a href="http://git.hunantv.com/huyinhuan/shorturl/blob/master/README.md" target="_blank">如何使用?</a>
+      </div>
     </div>
   </div>
   <div class="ui divider"></div>
