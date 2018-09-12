@@ -70,7 +70,7 @@ export class Pagination implements OnInit{
     this.pageList = this.generatePage()
   }
   goto(pageIndex){
-    if(this.pageCount == pageIndex){
+    if(this.pageCurrent == pageIndex){
       return
     }
     if(pageIndex == "..."){

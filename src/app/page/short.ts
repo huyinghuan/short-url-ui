@@ -20,11 +20,11 @@ const template:string = `
   <thead>
     <tr>
     <!-- <th class="collapsing">状态</th> -->
-      <th>短链</th>
+      <th class="collapsing">短链</th>
       <th>URL</th>
-      <th>所属用户</th>
-      <th>所属应用</th>
-      <th>操作</th>
+      <th class="collapsing">所属用户</th>
+      <th class="collapsing">所属应用</th>
+      <th class="collapsing">操作</th>
     </tr>
   </thead>
   <tbody>
@@ -38,7 +38,7 @@ const template:string = `
       <td><a [routerLink]="[short.shortURL.id]">{{short.shortURL.short}}</a></td>
       <td><a [routerLink]="[short.shortURL.id]">{{short.shortURL.url}}</a></td>
       <td>{{short.userMap.user_id || short.thirdToken.user_id}}</td>
-      <td>{{short.thirdToken.name}}</td>
+      <td>{{short.thirdToken.app_name}}</td>
       <td class="collapsing table-do">
         <a  [routerLink]="[short.shortURL.id]">编辑</a>
         <a  (click)="sync(short.shortURL.id)">同步</a>
@@ -78,7 +78,7 @@ export class ShortPage implements OnInit{
     index: 1
   }
   goto(index){
-    this.loadList({pageIndex: index, pageSize: 12})
+    this.loadList({pageIndex: index, pageSize: 10})
   }
   loadList(params){
     this.api.get("short", params).then((responseData:any)=>{
@@ -87,7 +87,7 @@ export class ShortPage implements OnInit{
     })
   }
   ngOnInit() {
-    this.loadList({})
+    this.loadList({pageIndex: 1, pageSize: 10})
   }
   generate(){
     this.api.post("short",{},this.shortURL).then(()=>{

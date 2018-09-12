@@ -41,6 +41,7 @@ export class API {
         skip.push(urlArr[i])
       }
     }
+   
     let query = getQueryParams(params, skip)
     if(query != ""){
       query = "?"+query
