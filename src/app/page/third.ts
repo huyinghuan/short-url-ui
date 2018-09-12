@@ -32,7 +32,7 @@ const template:string = `
   </thead>
   <tbody>
     <tr *ngFor="let app of appList">
-      <td>{{app.name}}</td>
+      <td>{{app.app_name}}</td>
       <td>{{app.token}}</td>
       <td>{{app.blank_list}}</td>
       <td>
