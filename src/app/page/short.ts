@@ -21,7 +21,7 @@ const template:string = `
     <tr>
     <!-- <th class="collapsing">状态</th> -->
       <th class="collapsing">短链</th>
-      <th>URL</th>
+      <th style="word-wrap:break-word;word-break:break-all;">URL</th>
       <th class="collapsing">所属用户</th>
       <th class="collapsing">所属应用</th>
       <th class="collapsing">操作</th>
@@ -36,7 +36,7 @@ const template:string = `
       </td>
       -->
       <td><a [routerLink]="[short.shortURL.id]">{{short.shortURL.short}}</a></td>
-      <td><a [routerLink]="[short.shortURL.id]">{{short.shortURL.url}}</a></td>
+      <td  style="word-wrap:break-word;word-break:break-all;"><a [routerLink]="[short.shortURL.id]">{{short.shortURL.url}}</a></td>
       <td>{{short.userMap.user_id || short.thirdToken.user_id}}</td>
       <td>{{short.thirdToken.app_name}}</td>
       <td class="collapsing table-do">
