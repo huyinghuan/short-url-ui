@@ -18,6 +18,7 @@ import { TopNavComponent } from './components/top-nav';
 import { ShortPage } from './page/short';
 import { ShortEditPage } from './page/short-edit'
 import { ThirdPage}from './page/third'
+import {ThirdEditPage} from './page/third-edit'
 
 alertjs.logPosition("bottom right").maxLogItems(5).delay(10000).okBtn("确认").cancelBtn("取消").setLogTemplate(function(input){
   let q = [];
@@ -37,6 +38,8 @@ var router = RouterModule.forRoot([
       path: "short/:short", component: ShortEditPage
     },{
       path: "third", component: ThirdPage,
+    },{
+        path: "third/:id", component: ThirdEditPage,
     }
     ]
   },
@@ -55,6 +58,7 @@ var router = RouterModule.forRoot([
     ShortPage,
     ShortEditPage,
     ThirdPage,
+    ThirdEditPage
   ],
   imports: [
     BrowserModule , HttpModule, FormsModule, router

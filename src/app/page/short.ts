@@ -20,15 +20,20 @@ const template:string = `
   <thead>
     <tr>
     <!-- <th class="collapsing">状态</th> -->
+      <th class="collapsing">操作</th>
       <th class="collapsing">短链</th>
       <th style="word-wrap:break-word;word-break:break-all;">URL</th>
-      <th class="collapsing">所属用户</th>
-      <th class="collapsing">所属应用</th>
-      <th class="collapsing">操作</th>
+      <th class="collapsing">用户</th>
+      <th class="collapsing">应用</th>
+     
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let short of shortList">
+      <td class="collapsing table-do">
+        <a  [routerLink]="[short.shortURL.id]">编辑</a>
+        <!-- <a  (click)="sync(short.shortURL.id)">同步</a>-->
+      </td>
       <!-- 
       <td class="collapsing">
         <i class="gray heartbeat icon"  *ngIf="!short.shortURL.status"></i>
@@ -37,18 +42,9 @@ const template:string = `
       -->
       <td><a [routerLink]="[short.shortURL.id]">{{short.shortURL.short}}</a></td>
       <td  style="word-wrap:break-word;word-break:break-all;"><a [routerLink]="[short.shortURL.id]">{{short.shortURL.url}}</a></td>
-      <td>{{short.userMap.user_id || short.thirdToken.user_id}}</td>
-      <td>{{short.thirdToken.app_name}}</td>
-      <td class="collapsing table-do">
-        <a  [routerLink]="[short.shortURL.id]">编辑</a>
-        <a  (click)="sync(short.shortURL.id)">同步</a>
-      <!-- 
-      <div class="ui buttons">
-        <a class="ui green icon button" title="编辑" [routerLink]="[short.shortURL.id]"><i class="edit icon"></i></a>
-        <button class="ui blue icon button"  title="同步" (click)="sync(short.shortURL.id)"><i class="sync icon"></i></button>
-      </div>
-      -->
-      </td>
+      <td class="collapsing">{{short.userMap.user_id || short.thirdToken.user_id}}</td>
+      <td class="collapsing">{{short.thirdToken.app_name}}</td>
+
     </tr>
   </tbody>
   </table>

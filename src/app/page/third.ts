@@ -10,7 +10,7 @@ const template:string = `
         <input type="text" placeholder="应用名称"  [(ngModel)]="app.app_name">
       </div>
       <div class="six wide field">
-        <input type="text" placeholder="长链域名白名单 多个用逗号 , 分开，非白名单域名禁止生成短链"  [(ngModel)]="app.blank_list" >
+        <input type="text" placeholder="长链域名白名单 多个用逗号 , 分开，非白名单域名禁止生成短链,如: m.mgtv.com"  [(ngModel)]="app.blank_list" >
       </div>
       <div class="field">
         <button class="ui blue button" (click)="generate()">生成</button>
@@ -32,11 +32,11 @@ const template:string = `
   </thead>
   <tbody>
     <tr *ngFor="let app of appList">
-      <td>{{app.app_name}}</td>
+      <td  class="collapsing">{{app.app_name}}</td>
       <td>{{app.token}}</td>
       <td>{{app.blank_list}}</td>
       <td>
-       暂时禁止操作
+        <a [routerLink]="[app.id]">编辑</a>
       </td>
     </tr>
   </tbody>
