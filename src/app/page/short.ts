@@ -87,7 +87,7 @@ export class ShortPage implements OnInit{
   }
   generate(){
     this.api.post("short",{},this.shortURL).then(()=>{
-      this.loadList({})
+      this.loadList({pageIndex: 1, pageSize: 10})
     })
   }
 
