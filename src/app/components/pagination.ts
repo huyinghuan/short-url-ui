@@ -39,7 +39,7 @@ export class Pagination implements OnInit{
       list = this.getArray(1, prefix)
       list.push("...")
       list = list.concat(this.getArray(this.pageCount - 3, this.pageCount))
-    //页码考后
+    //页码靠后
     }else if(this.pageCurrent > (this.pageCount - suffix + 1)){
       list = this.getArray(1, 3)
       list.push("...")
@@ -50,7 +50,7 @@ export class Pagination implements OnInit{
       list.push("...")
       list.push(this.pageCurrent - 2, this.pageCurrent - 1, this.pageCurrent, this.pageCurrent + 1, this.pageCurrent + 2)
       list.push("..")
-      list = list.concat(this.getArray(this.pageCount - suffix, this.pageCount))
+      list = list.concat(this.getArray(this.pageCount - 2, this.pageCount))
 
     }
     return list
