@@ -77,7 +77,7 @@ export class API {
         let msg = errorResponse.text()
         switch(errorResponse.status){
           case 401: 
-            window.location.href = errorResponse.headers.get("Location")
+            window.location.href = errorResponse.headers.get("Location")+"&redirect="+window.location.href
             break;
           case 403:
             alertjs.error(msg);

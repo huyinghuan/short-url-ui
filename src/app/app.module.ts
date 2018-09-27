@@ -19,6 +19,7 @@ import { ShortPage } from './page/short';
 import { ShortEditPage } from './page/short-edit'
 import { ThirdPage}from './page/third'
 import {ThirdEditPage} from './page/third-edit'
+import { NoOwnerPage } from './page/no-owner';
 
 alertjs.logPosition("bottom right").maxLogItems(5).delay(10000).okBtn("确认").cancelBtn("取消").setLogTemplate(function(input){
   let q = [];
@@ -40,6 +41,8 @@ var router = RouterModule.forRoot([
       path: "third", component: ThirdPage,
     },{
         path: "third/:id", component: ThirdEditPage,
+    },{
+      path: "noowner", component: NoOwnerPage
     }
     ]
   },
@@ -58,7 +61,8 @@ var router = RouterModule.forRoot([
     ShortPage,
     ShortEditPage,
     ThirdPage,
-    ThirdEditPage
+    ThirdEditPage,
+    NoOwnerPage
   ],
   imports: [
     BrowserModule , HttpModule, FormsModule, router
