@@ -16,38 +16,40 @@ const template:string = `
     </div>
   </div>
   <div class="ui divider"></div>
-  <table class="ui celled padded table">
-  <thead>
-    <tr>
-    <!-- <th class="collapsing">状态</th> -->
-      <th class="collapsing">操作</th>
-      <th class="collapsing">短链</th>
-      <th style="word-wrap:break-word;word-break:break-all;">URL</th>
-      <th class="collapsing">用户</th>
-      <th class="collapsing">应用</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let short of shortList">
-      <td class="collapsing table-do">
-        <a  [routerLink]="[short.shortURL.id]">编辑</a>
-        <!-- <a  (click)="sync(short.shortURL.id)">同步</a>-->
-      </td>
-      <!-- 
-      <td class="collapsing">
-        <i class="gray heartbeat icon"  *ngIf="!short.shortURL.status"></i>
-        <i class="red heartbeat icon"  *ngIf="short.shortURL.status"></i>
-      </td>
-      -->
-      <td><a [routerLink]="[short.shortURL.id]">{{short.shortURL.short}}</a></td>
-      <td  style="word-wrap:break-word;word-break:break-all;"><a [routerLink]="[short.shortURL.id]">{{short.shortURL.url}}</a></td>
-      <td class="collapsing">{{short.userMap.user_id || short.thirdToken.user_id}}</td>
-      <td class="collapsing">{{short.thirdToken.app_name}}</td>
+  <div class="data-table">
+    <table class="ui celled padded table">
+    <thead>
+      <tr>
+      <!-- <th class="collapsing">状态</th> -->
+        <th class="collapsing">操作</th>
+        <th class="collapsing">短链</th>
+        <th style="word-wrap:break-word;word-break:break-all;">URL</th>
+        <th class="collapsing">用户</th>
+        <th class="collapsing">应用</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let short of shortList">
+        <td class="collapsing table-do">
+          <a  [routerLink]="[short.shortURL.id]">编辑</a>
+          <!-- <a  (click)="sync(short.shortURL.id)">同步</a>-->
+        </td>
+        <!-- 
+        <td class="collapsing">
+          <i class="gray heartbeat icon"  *ngIf="!short.shortURL.status"></i>
+          <i class="red heartbeat icon"  *ngIf="short.shortURL.status"></i>
+        </td>
+        -->
+        <td><a [routerLink]="[short.shortURL.id]">{{short.shortURL.short}}</a></td>
+        <td  style="word-wrap:break-word;word-break:break-all;"><a [routerLink]="[short.shortURL.id]">{{short.shortURL.url}}</a></td>
+        <td class="collapsing">{{short.userMap.user_id || short.thirdToken.user_id}}</td>
+        <td class="collapsing">{{short.thirdToken.app_name}}</td>
 
-    </tr>
-  </tbody>
-  </table>
+      </tr>
+    </tbody>
+    </table>
+  </div>
   <pagination (onGoto)="goto($event)" [pageCount]="page.pageTotal"  [pageCurrent]="page.index"></pagination>
 </div>
 `
@@ -69,12 +71,13 @@ export class ShortPage implements OnInit{
   shortURL = {url: ""}
   shortList:Array<any> = []
   constructor(private api:API, private router:Router){}
+  pageSize = 10
   page = {
     pageTotal: 1,
     index: 1
   }
   goto(index){
-    this.loadList({pageIndex: index, pageSize: 10})
+    this.loadList({pageIndex: index, pageSize: this.pageSize})
   }
   loadList(params){
     this.api.get("short", params).then((responseData:any)=>{
@@ -83,11 +86,11 @@ export class ShortPage implements OnInit{
     })
   }
   ngOnInit() {
-    this.loadList({pageIndex: 1, pageSize: 10})
+    this.loadList({pageIndex: 1, pageSize: this.pageSize})
   }
   generate(){
     this.api.post("short",{},this.shortURL).then(()=>{
-      this.loadList({pageIndex: 1, pageSize: 10})
+      this.loadList({pageIndex: 1, pageSize: this.pageSize})
     })
   }
 
