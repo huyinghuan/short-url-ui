@@ -17,6 +17,7 @@ import  * as alertjs from 'alertify.js'
 import { TopNavComponent } from './components/top-nav';
 import { ShortPage } from './page/short';
 import { ShortEditPage } from './page/short-edit'
+import { ShortQueryPage } from './page/short-query';
 import { ThirdPage}from './page/third'
 import {ThirdEditPage} from './page/third-edit'
 import { NoOwnerPage } from './page/no-owner';
@@ -35,6 +36,8 @@ var router = RouterModule.forRoot([
     component: IndexPage,
     children:[{
         path: "short", component: ShortPage
+    },{
+      path: "short-query", component: ShortQueryPage
     },{
       path: "short/:short", component: ShortEditPage
     },{
@@ -60,6 +63,7 @@ var router = RouterModule.forRoot([
     IndexPage,
     ShortPage,
     ShortEditPage,
+    ShortQueryPage,
     ThirdPage,
     ThirdEditPage,
     NoOwnerPage

@@ -5,6 +5,7 @@ let template:string = `
     <img src="/assets/images/logo.png" >
   </a>
   <a class="item" [routerLink]="['short']"  routerLinkActive="active">短链生成</a>
+  <a class="item" [routerLink]="['short-query']"  routerLinkActive="active">短链查询与修改</a>
   <a class="item" [routerLink]="['third']"  routerLinkActive="active">第三方API Token申请</a>
 </div>
 `

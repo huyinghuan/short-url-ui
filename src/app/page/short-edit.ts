@@ -126,7 +126,7 @@ export class ShortEditPage implements OnInit{
   }
   deploy(){
     this.api.get("short.deploy", this.params).then(()=>{
-      alertjs.success("You've clicked OK");
+      alertjs.success("操作成功");
     })
   }
 }
