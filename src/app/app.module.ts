@@ -18,6 +18,7 @@ import { TopNavComponent } from './components/top-nav';
 import { ShortPage } from './page/short';
 import { ShortEditPage } from './page/short-edit'
 import { ShortQueryPage } from './page/short-query';
+import { AppQueryPage } from './page/app-query';
 import { ThirdPage}from './page/third'
 import {ThirdEditPage} from './page/third-edit'
 import { NoOwnerPage } from './page/no-owner';
@@ -38,6 +39,8 @@ var router = RouterModule.forRoot([
         path: "short", component: ShortPage
     },{
       path: "short-query", component: ShortQueryPage
+    },{
+      path: "app-query", component: AppQueryPage
     },{
       path: "short/:short", component: ShortEditPage
     },{
@@ -64,6 +67,7 @@ var router = RouterModule.forRoot([
     ShortPage,
     ShortEditPage,
     ShortQueryPage,
+    AppQueryPage,
     ThirdPage,
     ThirdEditPage,
     NoOwnerPage
