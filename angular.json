@@ -55,7 +55,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "task-center:build",
-            "proxyConfig":"proxy.conf.js"
+            "proxyConfig": "proxy.conf.js"
           },
           "configurations": {
             "production": {
@@ -84,5 +84,8 @@
       }
     }
   },
-  "defaultProject": "task-center"
+  "defaultProject": "task-center",
+  "cli": {
+    "analytics": "9390cf4e-9cd1-45e7-9410-d5ac66b22317"
+  }
 }
